@@ -4,6 +4,8 @@ const User = require("./user");
 const userController = new UserController();
 
 beforeEach(() => {
+  // Se limpia la lista de usuarios para evitar conflictos de referencia de
+  // memoria en los test, la líne se ejecuta después de que un test finaliza.
   userController.users = [];
 });
 
@@ -14,12 +16,14 @@ test("add user to userController", () => {
 });
 
 test("add user to userController", () => {
+  // se crea un nuevo test para add user
   let user = new User(4567, "Kevin", "kevin@generation.org");
   userController.add(user);
   expect(userController.getUsers()).toContain(user);
 });
 
 test("remove user to userController", () => {
+  // se createst para remover usuario
   let user = new User(1234, "Santiago", "santiago@generation.org");
   userController.add(user);
   userController.remove(user);
@@ -27,6 +31,7 @@ test("remove user to userController", () => {
 });
 
 test("remove user to userController", () => {
+  //se crea test para remover usuario
   let user = new User(4567, "Kevin", "kevin@generation.org");
   userController.add(user);
   userController.remove(user);
@@ -34,6 +39,7 @@ test("remove user to userController", () => {
 });
 
 test("find User By E mail", () => {
+  //se crea test para encontrar usuario via Email
   let user = new User(1234, "Santiago", "santiago@generation.org");
   userController.add(user);
   let foundUser = userController.findByEmail("santiago@generation.org");
@@ -41,6 +47,7 @@ test("find User By E mail", () => {
 });
 
 test("find User By E mail", () => {
+  // se crea test para encontrar usuario via Email
   let user = new User(4567, "Kevin", "kevin@generation.org");
   userController.add(user);
   let foundUser = userController.findByEmail("kevin@generation.org");
@@ -48,6 +55,7 @@ test("find User By E mail", () => {
 });
 
 test("find User By ID", () => {
+  // se crea test para encontrar usuario via ID
   let user = new User(1234, "Santiago", "santiago@generation.org");
   userController.add(user);
   let foundUser = userController.findById(1234);
@@ -55,6 +63,7 @@ test("find User By ID", () => {
 });
 
 test("find User By ID", () => {
+  // se crea test para encontrar usuario via ID
   let user = new User(4567, "Kevin", "kevin@generation.org");
   userController.add(user);
   let foundUser = userController.findById(4567);
